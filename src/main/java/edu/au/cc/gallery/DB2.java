@@ -1,0 +1,50 @@
+package edu.au.cc.gallery;
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+
+import java.sql.SQLException;
+import java.sql.DriverManager;
+import java.sql.Connection;
+
+public class DB2 {
+
+    private static final String dbUrl = "jdbc:postgresql://image-gallery.ctlud2o8w0px.us-east-2.rds.amazonaws.com/image_gallery";
+
+    private Connection connection;
+
+    private String getPassword() {
+	try(BufferedReader br = new BufferedReader(new FileReader("/home/ec2-user/.sql-passwd"))) {
+	    String result = br.readLine();
+	    return result;
+        } catch (IOException ex) {
+	      System.err.println("Error");
+	      System.exit(1);
+        }
+	return null;
+    }
+
+    public void connect() throws SQLException {
+        try {
+            Class.forName("org.postgresql.Driver");
+            connection = DriverManager.getConnection(dbUrl, "image_gallery", getPassword());
+        } catch (ClassNotFoundException ex) {
+            ex.printStackTrace();
+            System.exit(1);
+        }
+    }
+
+    public static void demo() throws Exception {
+	DB2 db = new DB2();
+	db.connect();
+    }
+
+    /*public static void main(String[] args ) {
+	System.out.print("Hello Testing");
+	DB2 db2 = new DB2();
+	System.out.println(db2.getPassword());
+	    
+	}*/
+	    
+}

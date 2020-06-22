@@ -5,7 +5,7 @@ import software.amazon.awssdk.services.s3.S3Client;
 import software.amazon.awssdk.services.s3.model.CreateBucketConfiguration;
 import software.amazon.awssdk.services.s3.model.CreateBucketRequest;
 import software.amazon.awssdk.services.s3.model.PutObjectRequest;
-import softward.amazon.awssdk.core.sync.RequestBody;
+import software.amazon.awssdk.core.sync.RequestBody;
 
 public class S3 {
     private static final Region region = Region.US_EAST_2;

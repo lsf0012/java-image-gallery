@@ -1,0 +1,9 @@
+package edu.au.cc.gallery;
+
+public class DB {
+
+    public static final String dbUrl = "
+    public void connect() {
+	Class.forName("org.postgresql.Driver");
+	
+    
