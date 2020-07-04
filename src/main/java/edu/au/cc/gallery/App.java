@@ -15,18 +15,15 @@ public class App {
 
     private static Gson gson = new Gson();
 
+    private static ImageService imageService = new ImageService();
+
     private static String listUsers() {
         try {
-            StringBuffer sb = new StringBuffer();
             UserDAO dao = Postgres.getUserDAO();
-//	    for(User u: dao.getUsers())
-//		sb.append(u.toString()+"<br/>");
             return gson.toJson(dao.getUsers());
-//	    return sb.toString();
         } catch (Exception e) {
             return "Error: " + e.getMessage();
         }
-
     }
 
     private static String getUser(String username) {
@@ -83,18 +80,11 @@ public class App {
             response.header("Access-Control-Allow-Origin", "*");
         });
 
-        //System.out.println(new App().getGreeting());
-        //S3.demo();
-        //DB2.demo();
-        //port(5000);
-        //get("/hello", (req, res) -> "Hello World");
-        //get("/hello2", (req, res) -> "<!DOCTYPE html><html><head><title>Hello</title><meta charset=\"utf-8\" /></head><body><h1>Hello World</h1></body></html>");
-
-        //get("/goodbye", (req, res) -> "Goodbye");
-
-        //get("/greet/:name", (req, res) -> "Nice to meet you "+ req.params("name"));
-
-        //new Calculator().addRoutes();
+        get("/images/:username", (req, res) -> imageService.getImagesForUser(req.params(":username")));
+        delete("/images/:imageID", (req, res) -> imageService.deleteImage(req.params(":imageID")));
+        post("/images/upload/:username",
+                "multipart/form-data",
+                (request, response) -> imageService.uploadImage(request));
 
         get("/users", (req, res) -> listUsers());
         get("/users/:username", (req, res) -> getUser(req.params(":username")));

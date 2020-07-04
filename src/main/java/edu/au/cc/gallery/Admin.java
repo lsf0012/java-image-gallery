@@ -11,11 +11,14 @@ import java.util.HashMap;
 import spark.ModelAndView;
 
 import spark.template.handlebars.HandlebarsTemplateEngine;
+import com.google.gson.Gson;
 
 //import edu.au.cc.gallery.data.UserDAO;
 //import edu.au.cc.gallery.data.Postgres;
 
 public class Admin {
+    private Gson gson = new Gson();
+
     private static UserDAO getUserDAO() throws Exception {
         return Postgres.getUserDAO();
     }
@@ -45,15 +48,11 @@ public class Admin {
         return null;
     }
 
-    private Map<String, Object> listUsers() {
+    private String listUsers() {
         try {
-            Map<String, Object> model = new HashMap<String, Object>();
-            model.put("users", getUserDAO().getUsers());
-            return model;
-//	    return new HandlebarsTemplateEngine()
-//		.render(new ModelAndView(model, "users.hbs"));
+            UserDAO dao = Postgres.getUserDAO();
+            return gson.toJson(dao.getUsers());
         } catch (Exception e) {
-//	    return "Error: "+e.getMessage();
             return null;
         }
     }
