@@ -47,7 +47,6 @@ public class App {
     }
 
     public static void main(String[] args) throws Exception {
-        staticFiles.location("/public/build");
 
         String portString = System.getenv("JETTY_PORT");
         if (portString == null || portString.equals(""))
