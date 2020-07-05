@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+read -r -d '' CREATE_TABLES_CODE << EOM
+CREATE TABLE users (
+	username VARCHAR (100) PRIMARY KEY NOT NULL,
+	password VARCHAR (100) NOT NULL,
+	full_name VARCHAR (100) NOT NULL
+);
+CREATE TABLE image_uploads (
+	username VARCHAR (100) NOT NULL,
+	imageid VARCHAR (500) NOT NULL
+);
+insert into users(username, password, full_name) values ('dongji', 'cpsc4973', 'dongji');
+EOM
+PGPASSWORD=$IG_PASSWD psql -h $PG_HOST -p $PG_PORT -U $IG_USER -d $IG_DATABASE -c "$CREATE_TABLES_CODE";
+

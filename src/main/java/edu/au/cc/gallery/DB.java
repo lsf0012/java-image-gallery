@@ -15,7 +15,10 @@ import org.json.JSONObject;
 
 public class DB {
 
-    private static final String dbUrl = "jdbc:postgresql://image-gallery.ctlud2o8w0px.us-east-2.rds.amazonaws.com/image_gallery";
+    private static final String dbUrl = String.format("jdbc:postgresql://%s:%s/%s",
+            System.getenv("PG_HOST"),
+            System.getenv("PG_PORT"),
+            System.getenv("IG_DATABASE"));
 
     private Connection connection;
 
@@ -68,3 +71,4 @@ public class DB {
     }
     
 }
+

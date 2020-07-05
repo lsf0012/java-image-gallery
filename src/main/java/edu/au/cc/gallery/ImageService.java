@@ -13,7 +13,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 public class ImageService {
-    private static final String IMAGE_S3_BUCKET_NAME = "image-gallery-bucket-lf";
+    private static final String IMAGE_S3_BUCKET_NAME = System.getenv("S3_IMAGE_BUCKET");
     private Gson gson = new Gson();
     private S3 s3 = new S3();
     private PostgresImageUploadsDAO postgresImageUploadsDAO;
