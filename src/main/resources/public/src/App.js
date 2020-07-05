@@ -14,7 +14,7 @@ export default class App extends Component {
   };
 
   setLoggedInUser(attemptedUserName, attemptedPassword, browserHistory, isAdminLogin) {
-    let usersUrl = "http://ec2-3-20-35-99.us-east-2.compute.amazonaws.com:5000";
+    let usersUrl = "http://ec2-3-20-35-99.us-east-2.compute.amazonaws.com:8888";
     if (isAdminLogin) {
       usersUrl += '/admin/users';
     } else {

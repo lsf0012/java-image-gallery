@@ -51,7 +51,7 @@ public class App {
 
         String portString = System.getenv("JETTY_PORT");
         if (portString == null || portString.equals(""))
-            port(5000);
+            port(8888);
         else
             port(Integer.parseInt(portString));
 

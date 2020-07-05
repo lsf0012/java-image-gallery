@@ -12,7 +12,7 @@ export default class UploadImage extends Component {
         data.append('file', this.state.csvFile);
         $.ajax({
             type: "POST",
-            url: `http://ec2-3-20-35-99.us-east-2.compute.amazonaws.com:5000/images/upload/${this.props.loggedInUser}`,
+            url: `http://ec2-3-20-35-99.us-east-2.compute.amazonaws.com:8888/images/upload/${this.props.loggedInUser}`,
             data: data,
             processData: false,
             contentType: false,

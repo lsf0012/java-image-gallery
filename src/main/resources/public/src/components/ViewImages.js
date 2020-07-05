@@ -12,7 +12,7 @@ export default class ViewImages extends Component {
     }
 
     getImages() {
-        fetch(`http://ec2-3-20-35-99.us-east-2.compute.amazonaws.com:5000/images/${this.props.loggedInUser}`, {
+        fetch(`http://ec2-3-20-35-99.us-east-2.compute.amazonaws.com:8888/images/${this.props.loggedInUser}`, {
             "headers": {
                 "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9",
                 "accept-language": "en-US,en;q=0.9",
@@ -34,7 +34,7 @@ export default class ViewImages extends Component {
     deleteImage(image) {
         const imageFileName = /[^/]*$/.exec(image)[0];
 
-        fetch(`http://ec2-3-20-35-99.us-east-2.compute.amazonaws.com:5000/images/${imageFileName}`, {
+        fetch(`http://ec2-3-20-35-99.us-east-2.compute.amazonaws.com:8888/images/${imageFileName}`, {
             method: 'DELETE',
             redirect: 'follow'
         })
